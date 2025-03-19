@@ -10,7 +10,6 @@ import type { ColDef, GridReadyEvent } from "ag-grid-community"
 export class AppComponent {
   title = 'my-app';
 
-   // Column Definitions
    columnDefs: ColDef[] = [
     { field: "id", headerName: "ID", sortable: true, filter: true, checkboxSelection: true },
     { field: "ruleName", headerName: "Rule Name", sortable: true, filter: true },
@@ -25,14 +24,13 @@ export class AppComponent {
     { field: "alert", headerName: "Alert Enabled", sortable: true, filter: true },
   ]
 
-  // Default Column Definition
+ 
   defaultColDef: ColDef = {
     flex: 1,
     minWidth: 100,
     resizable: true,
   }
 
-  // Row Data
   rowData = [
     {
       id: 997,
@@ -88,32 +86,23 @@ export class AppComponent {
     },
   ]
 
-  // Selected rows
   selectedRows: any[] = []
-
-  // Form data for editing
   formData: any = {}
-
-  // Grid API
   private gridApi: any
 
-  // Grid ready event
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api
   }
 
-  // Selection changed event
   onSelectionChanged() {
     this.selectedRows = this.gridApi.getSelectedRows()
     console.log("Selected rows:", this.selectedRows)
 
     if (this.selectedRows.length === 1) {
-      // Populate form with selected row data
       this.formData = { ...this.selectedRows[0] }
     }
   }
 
-  // Toggle column visibility
   toggleColumn(field: string) {
     const columnState = this.gridApi.getColumnState()
     const column = columnState.find((col: any) => col.colId === field)
@@ -123,18 +112,14 @@ export class AppComponent {
     }
   }
 
-  // Save form data
   saveData() {
     console.log("Saving data:", this.formData)
 
     if (this.formData.id) {
-      // Find and update the row in rowData
       const index = this.rowData.findIndex((row) => row.id === this.formData.id)
       if (index >= 0) {
         this.rowData[index] = { ...this.formData }
-        // Refresh the grid
         this.gridApi.setRowData(this.rowData)
-        // console.log("Updated data:", this.formData)
       }
     }
   }
