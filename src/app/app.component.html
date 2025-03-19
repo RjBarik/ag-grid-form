@@ -1,14 +1,12 @@
 <div class="container">
   <h2>Rules Management</h2>
   
-  <!-- Column Toggle Buttons -->
   <div class="column-toggles">
     <button *ngFor="let col of columnDefs" (click)="col.field ? toggleColumn(col.field) : null">
       {{ col.headerName }}
     </button>
   </div>
   
-  <!-- AG Grid -->
   <ag-grid-angular
     class="ag-theme-alpine"
     style="height: 400px; width: 100%;"
@@ -20,7 +18,6 @@
     (selectionChanged)="onSelectionChanged()"
   ></ag-grid-angular>
   
-  <!-- Edit Form -->
   <div class="edit-form" *ngIf="formData.id">
     <h3>Edit Rule</h3>
     <div class="form-row">
@@ -49,7 +46,7 @@
       </select>
     </div>
     
-    <button (click)="saveData()">Save Changes</button>
+    <button (click)="saveData()">Change</button>
   </div>
 </div>
 
