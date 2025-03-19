@@ -1,0 +1,55 @@
+<div class="container">
+  <h2>Rules Management</h2>
+  
+  <!-- Column Toggle Buttons -->
+  <div class="column-toggles">
+    <button *ngFor="let col of columnDefs" (click)="col.field ? toggleColumn(col.field) : null">
+      {{ col.headerName }}
+    </button>
+  </div>
+  
+  <!-- AG Grid -->
+  <ag-grid-angular
+    class="ag-theme-alpine"
+    style="height: 400px; width: 100%;"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    rowSelection="multiple"
+    (gridReady)="onGridReady($event)"
+    (selectionChanged)="onSelectionChanged()"
+  ></ag-grid-angular>
+  
+  <!-- Edit Form -->
+  <div class="edit-form" *ngIf="formData.id">
+    <h3>Edit Rule</h3>
+    <div class="form-row">
+      <label>Rule Name:</label>
+      <input type="text" [(ngModel)]="formData.ruleName">
+    </div>
+    
+    <div class="form-row">
+      <label>Type:</label>
+      <input type="text" [(ngModel)]="formData.type">
+    </div>
+    
+    <div class="form-row">
+      <label>Active:</label>
+      <select [(ngModel)]="formData.active">
+        <option value="Y">Yes</option>
+        <option value="N">No</option>
+      </select>
+    </div>
+    
+    <div class="form-row">
+      <label>Alert:</label>
+      <select [(ngModel)]="formData.alert">
+        <option value="Y">Yes</option>
+        <option value="N">No</option>
+      </select>
+    </div>
+    
+    <button (click)="saveData()">Save Changes</button>
+  </div>
+</div>
+
