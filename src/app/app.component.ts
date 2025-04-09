@@ -9,60 +9,22 @@ import type { ColDef, GridReadyEvent } from 'ag-grid-community';
 export class AppComponent {
   title = 'my-app';
 
-  columnDefs: ColDef[] = [
-    {
-      field: 'id',
-      headerName: 'ID',
-      sortable: true,
-      filter: true,
-      checkboxSelection: true,
-    },
-    {
-      field: 'ruleName',
-      headerName: 'Rule Name',
-      sortable: true,
-      filter: true,
-    },
-    {
-      field: 'active',
-      headerName: 'Active Status',
-      sortable: true,
-      filter: true,
-    },
-    { field: 'type', headerName: 'Type', sortable: true, filter: true },
-    { field: 'subType', headerName: 'Sub Type', sortable: true, filter: true },
-    { field: 'domain', headerName: 'Domain', sortable: true, filter: true },
-    {
-      field: 'impacted',
-      headerName: 'Impact Count',
-      sortable: true,
-      filter: true,
-    },
-    {
-      field: 'favourite',
-      headerName: 'Favorite',
-      sortable: true,
-      filter: true,
-    },
-    {
-      field: 'scheduled',
-      headerName: 'Scheduled',
-      sortable: true,
-      filter: true,
-    },
-    {
-      field: 'lastScheduledDate',
-      headerName: 'Last Scheduled Date',
-      sortable: true,
-      filter: true,
-    },
-    {
-      field: 'alert',
-      headerName: 'Alert Enabled',
-      sortable: true,
-      filter: true,
-    },
-  ];
+   // Column Definitions
+   columnDefs: ColDef[] = [
+    { field: "id", headerName: "ID", sortable: true, filter: true, checkboxSelection: true },
+    { field: "ruleName", headerName: "Rule Name", sortable: true, filter: true },
+    { field: "active", headerName: "Active Status", sortable: true, filter: true },
+    { field: "type", headerName: "Type", sortable: true, filter: true },
+    { field: "subType", headerName: "Sub Type", sortable: true, filter: true },
+    { field: "domain", headerName: "Domain", sortable: true, filter: true },
+    { field: "impacted", headerName: "Impact Count", sortable: true, filter: true },
+    { field: "favourite", headerName: "Favorite", sortable: true, filter: true },
+    { field: "scheduled", headerName: "Scheduled", sortable: true, filter: true },
+    { field: "lastScheduledDate", headerName: "Last Scheduled Date", sortable: true, filter: true },
+    { field: "alert", headerName: "Alert Enabled", sortable: true, filter: true },
+  ]
+
+  // Default Column Definition
   defaultColDef: ColDef = {
     flex: 1,
     minWidth: 100,
@@ -122,12 +84,18 @@ export class AppComponent {
       lastScheduledDate: '01-May-2024 01:15 PM',
       alert: 'N',
     },
-  ];
+  ]
 
-  selectedRows: any[] = [];
-  formData: any = {};
-  private gridApi: any;
+  // Selected rows
+  selectedRows: any[] = []
 
+  // Form data for editing
+  formData: any = {}
+
+  // Grid API
+  private gridApi: any
+
+  // Grid ready event
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
   }
@@ -137,7 +105,8 @@ export class AppComponent {
     console.log('Selected rows:', this.selectedRows);
 
     if (this.selectedRows.length === 1) {
-      this.formData = { ...this.selectedRows[0] };
+      // Populate form with selected row data
+      this.formData = { ...this.selectedRows[0] }
     }
   }
 
@@ -154,12 +123,13 @@ export class AppComponent {
     console.log('Saving data:', this.formData);
 
     if (this.formData.id) {
-      const index = this.rowData.findIndex(
-        (row) => row.id === this.formData.id
-      );
+      // Find and update the row in rowData
+      const index = this.rowData.findIndex((row) => row.id === this.formData.id)
       if (index >= 0) {
-        this.rowData[index] = { ...this.formData };
-        this.gridApi.setRowData(this.rowData);
+        this.rowData[index] = { ...this.formData }
+        // Refresh the grid
+        this.gridApi.setRowData(this.rowData)
+        // console.log("Updated data:", this.formData)
       }
     }
   }

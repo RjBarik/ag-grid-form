@@ -1,8 +1,18 @@
 <div class="container">
   <h2>Rules Management</h2>
+<<<<<<< HEAD
 
  
 
+=======
+  
+  <div class="column-toggles">
+    <button *ngFor="let col of columnDefs" (click)="col.field ? toggleColumn(col.field) : null">
+      {{ col.headerName }}
+    </button>
+  </div>
+  
+>>>>>>> 7d5050cbdda61cb15ec90e60689e10309d3cc38a
   <ag-grid-angular
     class="ag-theme-alpine"
     style="height: 400px; width: 100%"
@@ -13,7 +23,11 @@
     (gridReady)="onGridReady($event)"
     (selectionChanged)="onSelectionChanged()"
   ></ag-grid-angular>
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 7d5050cbdda61cb15ec90e60689e10309d3cc38a
   <div class="edit-form" *ngIf="formData.id">
     <h3>Edit Rule</h3>
     <div class="form-row">
@@ -41,7 +55,11 @@
         <option value="N">No</option>
       </select>
     </div>
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 7d5050cbdda61cb15ec90e60689e10309d3cc38a
     <button (click)="saveData()">Change</button>
   </div>
 </div>
