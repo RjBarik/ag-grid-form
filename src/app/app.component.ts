@@ -72,7 +72,7 @@ export class AppComponent {
   rowData = [
     {
       id: 997,
-      ruleName: '2DS - Trace Changes',
+      ruleName: 'Trendy',
       active: 'Y',
       type: 'Match',
       subType: '2DS - Trace Changes',
@@ -111,7 +111,7 @@ export class AppComponent {
     },
     {
       id: 985,
-      ruleName: 'testreve1',
+      ruleName: 'test1',
       active: 'Y',
       type: 'Match',
       subType: '1DS - File Monitor',

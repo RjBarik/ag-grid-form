@@ -1,14 +1,7 @@
 <div class="container">
   <h2>Rules Management</h2>
 
-  <div class="column-toggles">
-    <button
-      *ngFor="let col of columnDefs"
-      (click)="col.field ? toggleColumn(col.field) : null"
-    >
-      {{ col.headerName }}
-    </button>
-  </div>
+ 
 
   <ag-grid-angular
     class="ag-theme-alpine"
